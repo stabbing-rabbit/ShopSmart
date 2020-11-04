@@ -242,6 +242,7 @@ text-align: center;
 .logos {
   width:70px;
   height: 70px;
+  margin: 0 15px 20px;
 }
 
 /* shopping list styling */
