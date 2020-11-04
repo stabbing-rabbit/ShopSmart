@@ -32,13 +32,25 @@ const updateState = (state, action) => {
           [action.payload] : !state[action.payload],
         }
       }
+      case 'UPDATE_FOOD': {
+        return {
+          ...state,
+          food: action.payload,
+        }
+      }
+      case 'UPDATE_BUDGET': {
+        return {
+          ...state,
+          maxBudget: action.payload,
+        }
+      }
     default: {
         return state;
       }
   }
 }
 
-export default function FormHook() {
+function FormHook() {
   // very similar to redux:
   // state is the initial state of the app
   // dispatch is the a way of updating the state
@@ -73,7 +85,10 @@ export default function FormHook() {
         <form onSubmit={onSubmit} id="inputs">
             {/* Input field to enter food items */}
             <input
-              onChange={onFoodInput}
+              onChange={(e) => dispatch({
+                payload: e.target.value,
+                type: 'UPDATE_FOOD',
+              })}
               className="field"
               type="text"
               placeholder="Food Item"
@@ -84,7 +99,10 @@ export default function FormHook() {
           <div className="budget">
             {/* Input field to enter budget */}
             <input
-              onChange={onBudgetInput}
+              onChange={(e) => dispatch ({
+                payload: e.target.value,
+                type: 'UPDATE_BUDGET',
+              })}
               className="field"
               type="text"
               placeholder="Max Budget"
@@ -98,23 +116,42 @@ export default function FormHook() {
   )
 }
 
-// // captures food input in food key
-// onFoodInput(e) {
-//   this.setState((prevState) => {
-//     return {
-//       ...prevState,
-//       food: e.target.value,
-//     };
-//   });
-//   console.log('State.food', this.state.food);
-// }
+export default FormHook;
 
-// // captures food input in food key
-// onBudgetInput(e) {
-//   this.setState((prevState) => {
-//     return {
-//       ...prevState,
-//       maxBudget: e.target.value,
-//     };
-//   });
-// }
+  // // pushes captured food key into array of foodsList
+  // onSubmit(e) {
+  //   e.preventDefault();
+  //   // We're setting up a new array to update the food list in state, using
+  //   // this.state.food, which is the user's input into the food item input.
+  //   const newFoodsList = [...this.state.foodsList, this.state.food];
+
+  //   // Here we're spreading in the current arrays for each store in state
+  //   // PLEASE NOTE that these contain prices.
+  //   const newWholeFoodsList = [...this.state.wholeFoodsList];
+  //   const newRalphsList = [...this.state.ralphsList];
+  //   const newTraderJoesList = [...this.state.traderJoesList];
+
+  //   // Each query pulls the price of the item from the database and pushes it
+  //   // into these arrays and then uses setState to overwrite the old
+  //   // arrays.
+
+  //   query(this.state.food, 'tj').then((result) => {
+  //     newTraderJoesList.push(result.data);
+  //     this.setState({
+  //       foodsList: newFoodsList,
+  //       traderJoesList: newTraderJoesList,
+  //     });
+  //   });
+  //   query(this.state.food, 'wf').then((result) => {
+  //     newWholeFoodsList.push(result.data);
+  //     this.setState({
+  //       wholeFoodsList: newWholeFoodsList,
+  //     });
+  //   });
+  //   query(this.state.food, 'ralphs').then((result) => {
+  //     newRalphsList.push(result.data);
+  //     this.setState({
+  //       ralphsList: newRalphsList,
+  //     });
+  //   });
+  // }

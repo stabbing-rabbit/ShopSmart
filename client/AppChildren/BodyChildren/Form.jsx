@@ -8,14 +8,14 @@ import Container from './Container.jsx';
 
 /* Query request to retrieve prices based on inputted food */
 
-const query = (foodName, storeName) => {
-  return axios.get('/api/', {
-    params: {
-      store: storeName,
-      food: foodName,
-    },
-  });
-};
+// const query = (foodName, storeName) => {
+//   return axios.get('/api/', {
+//     params: {
+//       store: storeName,
+//       food: foodName,
+//     },
+//   });
+// };
 
 // fetch
 // const query = () => {
