@@ -9,7 +9,7 @@ import Form from './AppChildren/BodyChildren/Form.jsx';
 function App() {
   return (
     <div>
-      <Header />
+      <Header test={'test'}/>
       <Form />
     </div>
   );
