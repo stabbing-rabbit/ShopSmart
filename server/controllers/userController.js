@@ -66,8 +66,8 @@ userControllers.deleteUser = async (req,res,next) => {
         //if no user, return user data not found. 
           //Could add delete user after getUser or create Verify user
     console.log(req.query)
-    await User.deleteMany({
-      userName: 'test2DB'
+    await User.deleteOne({
+      userName: req.query.userName
     })
     
     .then((data) => {
