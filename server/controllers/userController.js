@@ -35,7 +35,9 @@ userControllers.createUser = async (req,res,next) => {
         //check if user already exist in the data base 
           //if it does, send client (user already created)
 
-        // console.log(req.query)
+        console.log(req.query)
+        console.log(req.params)
+        console.log(req.body)
         const newUser = new User({
             userName: req.query.userName,
             password: req.query.password,
