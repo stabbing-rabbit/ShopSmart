@@ -33,8 +33,8 @@ router.get('/users', userControllers.getUser, async (req, res) => {
 
 router.post('/createUser', userControllers.createUser, async (req, res) => {
   try {
-    console.log('trying to post USER DATA', res.locals.users);
-    return res.status(200).send('data POSTED')
+    
+    return res.status(200).send('user data POSTED')
 
   } catch (err) {
     // check if we need to send as json?
@@ -42,5 +42,10 @@ router.post('/createUser', userControllers.createUser, async (req, res) => {
     res.sendStatus(400);
   }
 })
+
+router.delete('/users', userControllers.deleteUser, (req, res) => {
+  return res.status(200).send('user data DELETED')
+})
+
 
 module.exports = router;
