@@ -245,6 +245,10 @@ text-align: center;
   margin: 0 15px 20px;
 }
 
+.logos:hover {
+  cursor: pointer;
+}
+
 /* shopping list styling */
 .paper {
   background: #fff;
