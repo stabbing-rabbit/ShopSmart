@@ -2,8 +2,8 @@ import React, { useReducer } from 'react'
 import wfLogo from '../assets/wholeFoods.png'
 import traderJoeLogo from '../assets/traders.png'
 import ralphsLogo from '../assets/ralphs.png'
-
-import LogosHook from './form-components/Logos';
+import ContainerHook from './form-components/ContainerHook.jsx'
+import LogosHook from './form-components/LogosHook.jsx';
 
 // create an initial state
 const initialState = {
@@ -60,20 +60,23 @@ function FormHook() {
   return (
       <div>
         <div id="middle" className="TopInput">
-        {/* These are the logos for each store with the onclick functionality. */}
-        <LogosHook dispatch={() => dispatch({
+          {/* These are the logos for each store with the onclick functionality. */}
+          <LogosHook
+            dispatch={() => dispatch({
               payload:'wholeFoodsSelected',
               type: 'REVEAL_STORE',
             })}
             logo={wfLogo}
           />
-        <LogosHook dispatch={() => dispatch({
+          <LogosHook
+            dispatch={() => dispatch({
               payload:'traderJoesSelected',
               type: 'REVEAL_STORE',
             })}
             logo={traderJoeLogo}
           />
-        <LogosHook dispatch={() => dispatch({
+          <LogosHook
+            dispatch={() => dispatch({
               payload:'ralphsSelected',
               type: 'REVEAL_STORE',
             })}
@@ -82,7 +85,7 @@ function FormHook() {
         </div>
 
         <div className="BottomInputs">
-        <form onSubmit={onSubmit} id="inputs">
+        <form onSubmit={() => {console.log('SUBMITTED')}} id="inputs">
             {/* Input field to enter food items */}
             <input
               onChange={(e) => dispatch({
@@ -110,8 +113,12 @@ function FormHook() {
           </div>
         </div>
         
-        <Container props={state} />
-        <Footer props={state} />
+        <ContainerHook
+          wfSelected={state.wholeFoodsSelected}
+          raSelected={state.ralphsSelected}
+          tjSelected={state.traderJoesSelected}
+        />
+        {/* <Footer props={state} /> */}
       </div>
   )
 }
