@@ -4,7 +4,10 @@ const Schema = mongoose.Schema;
 
 //created default ShopSchema for different markets 
 const UserSchema = new Schema({
-  userName: String,
+  userName: {
+      type: String,
+      unique: true
+  },
   password: String,
   shoppingCart: Array
 })

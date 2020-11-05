@@ -35,7 +35,7 @@ userControllers.createUser = async (req,res,next) => {
         //check if user already exist in the data base 
           //if it does, send client (user already created)
 
-        console.log(req.query)
+        // console.log(req.query)
         const newUser = new User({
             userName: req.query.userName,
             password: req.query.password,
@@ -44,7 +44,13 @@ userControllers.createUser = async (req,res,next) => {
 
 
         await newUser.save((error) => {
-
+          if (error) {
+              console.log('username invalid, please try another')
+              return next(error);
+          } else {
+              console.log('user has been saved');
+              return next();
+          }
         })
         
         // .then((data) => {
@@ -53,9 +59,9 @@ userControllers.createUser = async (req,res,next) => {
         //   res.locals.users = result;
         // });
     
-        return next();
       } 
       catch (err) {
+        // res.sendError('Username in use, please try a different username.')
         return next({ err });
       }
 }
