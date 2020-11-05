@@ -18,28 +18,37 @@ import Container from './Container.jsx';
 // };
 
 // fetch
-const query = () => {
-  let data = null;
-  fetch('/api/', {
-    method: 'GET',
-    headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify({
-      store: storeName,
-      food: foodName, 
-    })
-  })
-  .then((res) => res.json()) //test if we can combine both .thens.
-  .then((response) => {data = response})
-  .catch((err) => {
-    if (err) {
-      console.error(err);
-    }
-  })
-}
+// const query = () => {
+//   let data = null;
+//   fetch('/api/', {
+//     method: 'GET',
+//     headers: {'Content-Type': 'application/json'},
+//     body: JSON.stringify({
+//       store: storeName,
+//       food: foodName, 
+//     })
+//   })
+//   .then((res) => res.json()) //test if we can combine both .thens.
+//   .then((response) => {data = response})
+//   .catch((err) => {
+//     if (err) {
+//       console.error(err);
+//     }
+//   })
+// }
+
+// const query = async () => {
+//   try {
+//     const result = await fetch('/api/');
+//     const data = await result.json();
+//   } catch (err) {
+//     console.log(err)
+//   } 
+// }
 
 class Form extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
       // These switch from true/false based on which stores have been selected to
       // display
