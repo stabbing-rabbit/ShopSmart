@@ -9,16 +9,17 @@ import { Route, Switch, Link } from 'react-router-dom';
 
 function App() {
   return (
+    // These are all of our Routes for our router 
     <Switch>
     <div>
+       {/* homepage */}
        <Route exact path="/">
-          <Link className='gotomiddle' to='/FormHook'>Guest</Link>
-          <Link className='gotologin' to='/FormHook'>Login</Link>
+          {/* <Link className='gotomiddle' to='/FormHook'>Guest</Link> */}
+          {/* <Link className='gotologin' to='/FormHook'>Login</Link> */}
           <Header />
           <LoginHook />
        </Route>
-       {/* <Route path="/Login/" component={LoginHook}/> */}
-      {/* <Form /> */}
+       {/* main page */}
        <Route path="/FormHook" component={FormHook}/>
     </div>
     </Switch>
