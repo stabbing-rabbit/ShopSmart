@@ -6,24 +6,21 @@ const userControllers = {};
 
 userControllers.getUser = async (req,res,next) => {
     try {
-        // await User.post(() =>{
-            
-        // })
-        // userName: 'testingName',
-        //   password: 'testpwd',
-        //   shoppingCart: []
-
+        // Finds the user on our DB that matches the username in the req
         await User.find({
+          userName: req.body.userName
           
         })
-        
         .then((data) => {
-        //   console.log(data);
-          const result = data;
-          res.locals.users = result;
+          // Once the user is found, checks if the password in the req matches the password on DB
+          if(data[0].password === req.body.password) {
+            const result = data[0];
+            res.locals.users = result;
+            console.log(result)
+          }
+          return next();
         });
     
-        return next();
       } 
       catch (err) {
         return next({ err });
@@ -34,12 +31,8 @@ userControllers.createUser = async (req,res,next) => {
     try {
         //check if user already exist in the data base 
           //if it does, send client (user already created)
-
-        console.log(req.query)
-        console.log(req.params)
-        console.log(req.body)
         const newUser = new User({
-            userName: req.query.userName,
+            userName: req.query.userName,  
             password: req.query.password,
             shoppingCart: req.query.shoppingCart
         })
@@ -54,16 +47,9 @@ userControllers.createUser = async (req,res,next) => {
               return next();
           }
         })
-        
-        // .then((data) => {
-        // //   console.log(data);
-        //   const result = data.query;
-        //   res.locals.users = result;
-        // });
     
       } 
       catch (err) {
-        // res.sendError('Username in use, please try a different username.')
         return next({ err });
       }
 }

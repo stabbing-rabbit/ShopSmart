@@ -18,11 +18,10 @@ router.get('/', shopControllers.getShop, async (req, res) => {
   }
 });
 
-router.get('/users', userControllers.getUser, async (req, res) => {
+router.post('/users', userControllers.getUser, async (req, res) => {
   try {
-    console.log('trying to get USER DATA', res.locals.users);
-    return res.status(200).send('data received')
-
+    // console.log('trying to get USER DATA', res.locals.users);
+    return res.status(200).json(res.locals.users)
   } catch (err) {
     // check if we need to send as json?
     console.log('error', err);
