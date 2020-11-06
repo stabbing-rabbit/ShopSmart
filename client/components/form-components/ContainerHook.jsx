@@ -3,11 +3,27 @@ import SubContainer from './container-component/SubContainer.jsx';
 
 const ContainerHook = (props) => {
   const { wfSelected, raSelected, tjSelected } = props;
+  const { wfSubtotal, raSubtotal, tjSubtotal, maxBudget, tjList, wfList, raList } = props
   return (
     <div className="marketsDisplay">
-      {wfSelected && <SubContainer marketName='Whole Foods'/>}
-      {tjSelected && <SubContainer marketName='Trader Joes'/>}
-      {raSelected && <SubContainer marketName='Ralphs'/>}
+      {wfSelected && <SubContainer 
+        marketName='Whole Foods'
+        subTotal={wfSubtotal}
+        priceList={wfList}
+        maxBudget={maxBudget}
+      />}
+      {tjSelected && <SubContainer
+        marketName='Trader Joes'
+        subTotal={tjSubtotal}
+        priceList={tjList}
+        maxBudget={maxBudget}
+      />}
+      {raSelected && <SubContainer
+        marketName='Ralphs'
+        subTotal={raSubtotal}
+        priceList={raList}
+        maxBudget={maxBudget}
+      />}
     </div>
   )
 }

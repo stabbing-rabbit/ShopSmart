@@ -51,11 +51,10 @@ const updateState = (state, action) => {
 }
 
 function FormHook() {
-  // very similar to redux:
-  // state is the initial state of the app
+  // sets an initial State
   // dispatch is the a way of updating the state
   // dispatch accepts an object with properties of payload and type then passed onto updateState
-  const [state, dispatch] = useReducer(updateState, initialState); // useReducer accepts a reducer(func) and state
+  const [state, dispatch] = useReducer(updateState, initialState); // useReducer accepts a reducer and state
 
   return (
       <div>
@@ -85,7 +84,10 @@ function FormHook() {
         </div>
 
         <div className="BottomInputs">
-        <form onSubmit={() => {console.log('SUBMITTED')}} id="inputs">
+        <form onSubmit={(e) => {
+            e.preventDefault()
+            console.log('SUBMITTED')
+          }} id="inputs">
             {/* Input field to enter food items */}
             <input
               onChange={(e) => dispatch({
@@ -112,11 +114,18 @@ function FormHook() {
             />
           </div>
         </div>
-        
+        {/* displays cards for each store and each stores associated food prices */}
         <ContainerHook
           wfSelected={state.wholeFoodsSelected}
           raSelected={state.ralphsSelected}
           tjSelected={state.traderJoesSelected}
+          wfSubtotal={state.wholeFoodsSubtotal}
+          raSubtotal={state.traderJoesSubtotal}
+          tjSubtotal={state.ralphsSubtotal}
+          wgList={state.wholeFoodsList}
+          tjList={state.traderJoesList}
+          raList={state.ralphsList}
+          maxBudget={state.maxBudget}
         />
         {/* <Footer props={state} /> */}
       </div>
@@ -124,41 +133,3 @@ function FormHook() {
 }
 
 export default FormHook;
-
-  // // pushes captured food key into array of foodsList
-  // onSubmit(e) {
-  //   e.preventDefault();
-  //   // We're setting up a new array to update the food list in state, using
-  //   // this.state.food, which is the user's input into the food item input.
-  //   const newFoodsList = [...this.state.foodsList, this.state.food];
-
-  //   // Here we're spreading in the current arrays for each store in state
-  //   // PLEASE NOTE that these contain prices.
-  //   const newWholeFoodsList = [...this.state.wholeFoodsList];
-  //   const newRalphsList = [...this.state.ralphsList];
-  //   const newTraderJoesList = [...this.state.traderJoesList];
-
-  //   // Each query pulls the price of the item from the database and pushes it
-  //   // into these arrays and then uses setState to overwrite the old
-  //   // arrays.
-
-  //   query(this.state.food, 'tj').then((result) => {
-  //     newTraderJoesList.push(result.data);
-  //     this.setState({
-  //       foodsList: newFoodsList,
-  //       traderJoesList: newTraderJoesList,
-  //     });
-  //   });
-  //   query(this.state.food, 'wf').then((result) => {
-  //     newWholeFoodsList.push(result.data);
-  //     this.setState({
-  //       wholeFoodsList: newWholeFoodsList,
-  //     });
-  //   });
-  //   query(this.state.food, 'ralphs').then((result) => {
-  //     newRalphsList.push(result.data);
-  //     this.setState({
-  //       ralphsList: newRalphsList,
-  //     });
-  //   });
-  // }

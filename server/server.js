@@ -5,6 +5,8 @@ const axios = require("axios");
 const apiRouter = require("./routes/api.js");
 const app = express();
 
+
+// connects our server to MongoDB
 const mongoose = require("mongoose");
 const MONGO_URI = 'mongodb+srv://Gavin:Fear1894@cluster0.rwxzh.mongodb.net/shopsmarter?retryWrites=true&w=majority'
 mongoose.connect(MONGO_URI, {
@@ -12,12 +14,13 @@ mongoose.connect(MONGO_URI, {
     useUnifiedTopology: true
 });
 
+// checks to make sure connection is successfully made
 mongoose.connection.on('connected', () => {
   console.log('Mongoose is connected!')
 }).catch(err => console.log(err));
 
-
-
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 if (process.env.NODE_ENV === 'production') {
   app.use('/build', express.static(path.join(__dirname, '../build')));

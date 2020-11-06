@@ -41,10 +41,10 @@ module.exports = {
     port: 8080,
     hot: true,
     proxy: [
-      {
-        context: ['/api'],
-        target: 'http://localhost:3005/',
+       {
+        context: ['/api/'],
+        target: 'http://localhost:3000/',
       },
-    ],
+    ]
   },
 }
