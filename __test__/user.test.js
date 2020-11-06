@@ -9,9 +9,13 @@ const MONGO_URI = 'mongodb+srv://Gavin:Fear1894@cluster0.rwxzh.mongodb.net/shops
 const mongoose = require('mongoose');
 // const User = require('../server/modules/userModel.js')
 const { User } = require('../server/modules/userModel')
+
+//user Input needs to be changed if it has been run and saved to data base. 
+  //it will fail the test if userName already exist in database
 const fakeUser = {
-  userName: 'drunkin', 
-  password: 'code'
+  userName: 'cookie', 
+  password: 'love', 
+  shoppingCart: ['cookies', 'banana', 'vanillaJS']
 };
 
 describe ('User Model Test', () => {
@@ -36,6 +40,7 @@ describe ('User Model Test', () => {
     expect(savedUser._id).toBeDefined();
     expect(savedUser.name).toBe(fakeUser.name);
     expect(savedUser.password).toBe(fakeUser.password);
+    expect(Array.isArray(savedUser.shoppingCart)).toBe(true);
   })
 
 });
